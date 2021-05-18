@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "./styles.css";
-
 import { cx, css, injectGlobal } from "emotion";
 
 import {
@@ -36,6 +35,9 @@ import dimmerStyles from "./styles/Dimmer.style";
 import headerStyles from "./styles/Header.style";
 import iconStyles from "./styles/Icon.style";
 
+import Bundesland from "./components/Bundesland";
+import Amtsgericht from "./components/Amtsgericht";
+
 export const globalStyles = `
   * {
     box-sizing: border-box;
@@ -59,13 +61,10 @@ injectGlobal`
 let federal_state_id_to_court = require("./federal_state_id_to_court.json");
 let federal_state_id_to_name = require("./federal_state_id_to_name.json");
 
-const Bundesland = () => (
+const ConstDropdown = () => (
   <Dropdown button text="Bundesland">
     <Dropdown.Menu>
       <Dropdown.Item text="New" />
-      {Object.keys(federal_state_id_to_name).map((x, i) => (
-        <Dropdown.Item text={federal_state_id_to_name[x]} />
-      ))}
     </Dropdown.Menu>
   </Dropdown>
 );
@@ -105,10 +104,12 @@ class App extends Component {
           </Marker>
         </Map>
         <hr></hr>
+        Amtsgericht:
         <Grid>
           <Grid.Column width={16}>
             <Segment>
               <Bundesland />
+              <Amtsgericht />
 
               <Button primary>Search</Button>
             </Segment>
