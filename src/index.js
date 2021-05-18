@@ -35,8 +35,7 @@ import dimmerStyles from "./styles/Dimmer.style";
 import headerStyles from "./styles/Header.style";
 import iconStyles from "./styles/Icon.style";
 
-import Bundesland from "./components/Bundesland";
-import Amtsgericht from "./components/Amtsgericht";
+import MainMenu from "./components/MainMenu";
 
 export const globalStyles = `
   * {
@@ -72,7 +71,8 @@ const ConstDropdown = () => (
 class App extends Component {
   state = {
     center: [51.505, -0.091],
-    zoom: 8
+    zoom: 8,
+    currentFederalStateId: ""
   };
 
   render() {
@@ -108,8 +108,9 @@ class App extends Component {
         <Grid>
           <Grid.Column width={16}>
             <Segment>
-              <Bundesland />
-              <Amtsgericht />
+              <MainMenu
+                currentFederalStateId={this.state.currentFederalStateId}
+              />
 
               <Button primary>Search</Button>
             </Segment>
