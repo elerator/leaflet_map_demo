@@ -12,3 +12,6 @@
   background: transparent;
   border: none;
 }
+.dropdown {
+  z-index: 1000;
+}
