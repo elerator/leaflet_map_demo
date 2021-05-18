@@ -56,18 +56,16 @@ injectGlobal`
   ${dimmerStyles}
 `;
 
-const DropdownExample = () => (
-  <Dropdown button text="Dropdown Menu">
+let federal_state_id_to_court = require("./federal_state_id_to_court.json");
+let federal_state_id_to_name = require("./federal_state_id_to_name.json");
+
+const Bundesland = () => (
+  <Dropdown button text="Bundesland">
     <Dropdown.Menu>
       <Dropdown.Item text="New" />
-      <Dropdown.Item text="Open..." description="ctrl + o" />
-      <Dropdown.Item text="Save as..." description="ctrl + s" />
-      <Dropdown.Item text="Rename" description="ctrl + r" />
-      <Dropdown.Item text="Make a copy" />
-      <Dropdown.Divider />
-      <Dropdown.Item text="Download As..." />
-      <Dropdown.Item text="Publish To Web" />
-      <Dropdown.Item text="E-mail Collaborators" />
+      {Object.keys(federal_state_id_to_name).map((x, i) => (
+        <Dropdown.Item text={federal_state_id_to_name[x]} />
+      ))}
     </Dropdown.Menu>
   </Dropdown>
 );
@@ -110,12 +108,9 @@ class App extends Component {
         <Grid>
           <Grid.Column width={16}>
             <Segment>
-              <Button>Bundesland</Button>
-              <Button primary>Primary</Button>
-              <Button size="mini" primary>
-                Small
-              </Button>
-              <DropdownExample />
+              <Bundesland />
+
+              <Button primary>Search</Button>
             </Segment>
           </Grid.Column>
         </Grid>
